@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 interface Project {
+  id: string;
   translationKey: string;
   tags: string[];
   icon: string;
@@ -14,13 +17,16 @@ interface Project {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [NgClass, TranslateModule, ScrollRevealDirective],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })
 export class Projects {
+  protected expandedProjectId = signal<string | null>(null);
+
   protected readonly projects: Project[] = [
     {
+      id: 'bandmate',
       translationKey: 'BANDMATE',
       tags: ['Angular', 'Supabase', 'Tailwind CSS', 'RxJS'],
       icon: '🎸',
@@ -30,6 +36,7 @@ export class Projects {
       typeKey: 'PERSONAL',
     },
     {
+      id: 'naologic',
       translationKey: 'NAOLOGIC',
       tags: ['Angular', 'TypeScript', 'Clean Architecture', 'Standalone Components'],
       icon: '📅',
@@ -38,4 +45,8 @@ export class Projects {
       typeKey: 'TECHNICAL',
     },
   ];
+
+  protected toggleProjectDetails(id: string) {
+    this.expandedProjectId.update((prev) => (prev === id ? null : id));
+  }
 }

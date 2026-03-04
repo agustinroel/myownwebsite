@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 interface Solution {
   translationKey: string;
@@ -12,7 +13,7 @@ interface Solution {
 @Component({
   selector: 'app-solutions',
   standalone: true,
-  imports: [NgClass, TranslateModule],
+  imports: [NgClass, TranslateModule, ScrollRevealDirective],
   templateUrl: './solutions.html',
   styleUrl: './solutions.css',
 })

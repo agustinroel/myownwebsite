@@ -4,7 +4,7 @@
 
   <div class="max-w-7xl mx-auto px-6">
     <!-- Section Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16" appScrollReveal>
       <p class="text-sm font-medium tracking-[0.3em] uppercase text-accent-pink mb-3">
         {{ 'PROJECTS.TAG' | translate }}
       </p>
@@ -19,8 +19,8 @@
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid md:grid-cols-2 gap-8">
-      @for (project of projects; track project.translationKey) {
+    <div class="grid md:grid-cols-2 gap-8" appScrollReveal [delay]="200">
+      @for (project of projects; track project.id) {
         <div class="glass-card p-8 group relative overflow-hidden flex flex-col items-start h-full">
           <!-- Gradient accent top bar -->
           <div
@@ -50,6 +50,55 @@
             <p class="text-sm text-text-secondary leading-relaxed mb-6">
               {{ 'PROJECTS.CARDS.' + project.translationKey + '.DESC' | translate }}
             </p>
+
+            <!-- Technical Details Toggle -->
+            <button
+              (click)="toggleProjectDetails(project.id)"
+              class="text-xs font-bold text-accent-violet hover:text-accent-cyan transition-colors mb-6 flex items-center gap-2 group/btn"
+            >
+              {{
+                (expandedProjectId() === project.id ? 'PROJECTS.LESS' : 'PROJECTS.DETAILS')
+                  | translate
+              }}
+              <svg
+                class="w-3 h-3 transition-transform duration-300"
+                [class.rotate-180]="expandedProjectId() === project.id"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            <!-- Details Section -->
+            @if (expandedProjectId() === project.id) {
+              <div class="mb-6 space-y-4 animate-fade-in-up">
+                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                  <h4
+                    class="text-[10px] uppercase tracking-widest text-accent-violet font-bold mb-1"
+                  >
+                    {{ 'PROJECTS.CHALLENGE_LABEL' | translate }}
+                  </h4>
+                  <p class="text-xs text-text-secondary italic">
+                    {{ 'PROJECTS.CARDS.' + project.translationKey + '.CHALLENGE' | translate }}
+                  </p>
+                </div>
+                <div class="p-4 rounded-xl bg-accent-violet/5 border border-accent-violet/10">
+                  <h4 class="text-[10px] uppercase tracking-widest text-accent-cyan font-bold mb-1">
+                    {{ 'PROJECTS.SOLUTION_LABEL' | translate }}
+                  </h4>
+                  <p class="text-xs text-text-secondary">
+                    {{ 'PROJECTS.CARDS.' + project.translationKey + '.SOLUTION' | translate }}
+                  </p>
+                </div>
+              </div>
+            }
 
             <!-- Tags -->
             <div class="flex flex-wrap gap-2 mb-6 mt-auto">

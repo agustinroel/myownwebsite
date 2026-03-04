@@ -19,7 +19,9 @@
     ],
     "DESCRIPTION": "Transformo requisitos de negocio complejos en interfaces escalables, performantes y, sobre todo, humanas.",
     "CTA_PRIMARY": "Ver lo que hago",
-    "CTA_SECONDARY": "Tomemos un café virtual ☕"
+    "CTA_SECONDARY": "Tomemos un café virtual ☕",
+    "AVAILABILITY": "Disponible para nuevos retos",
+    "DOWNLOAD_CV": "Descargar CV"
   },
   "ABOUT": {
     "TAG": "SOBRE MÍ",
@@ -122,13 +124,24 @@
     "CARDS": {
       "BANDMATE": {
         "TITLE": "Bandmate",
-        "DESC": "Plataforma para músicos que permite gestionar canciones, acordes y arreglos de forma colaborativa. Incluye un modo de práctica con auto-scroll, gestión de setlists y comunidad."
+        "DESC": "Plataforma para músicos que permite gestionar canciones, acordes y arreglos de forma colaborativa. Incluye un modo de práctica con auto-scroll, gestión de setlists y comunidad.",
+        "CHALLENGE": "Gestionar el estado reactivo de múltiples flujos de audio y scrolls sincronizados en tiempo real sin sacrificar el rendimiento.",
+        "SOLUTION": "Arquitectura basada en RxJS y Signals para una sincronización precisa y NgRx para el estado global de la comunidad."
       },
       "NAOLOGIC": {
         "TITLE": "Naologic Timeline",
-        "DESC": "Prueba técnica desarrollada para Naologic: vista de timeline interactiva de dos paneles con drag & drop, detección de solapamientos y gestión de órdenes de trabajo."
+        "DESC": "Prueba técnica desarrollada para Naologic: vista de timeline interactiva de dos paneles con drag & drop, detección de solapamientos y gestión de órdenes de trabajo.",
+        "CHALLENGE": "Implementar un algoritmo de detección de colisiones dinámico en un entorno bidireccional de drag & drop.",
+        "SOLUTION": "Uso de Angular CDK Drag & Drop combinado con lógica de fechas optimizada para validación instantánea."
       }
-    }
+    },
+    "DETAILS": "Ver detalles técnicos",
+    "LESS": "Ver menos",
+    "CHALLENGE_LABEL": "El Reto",
+    "SOLUTION_LABEL": "La Solución"
+  },
+  "TRUSTED_BY": {
+    "TITLE": "Confían en mi arquitectura"
   },
   "FOOTER": {
     "BIO": "Arquitecto de Experiencias Frontend. Ingeniero de software especializado en Angular, dedicado a crear interfaces escalables, performantes y humanas.",

@@ -1,6 +1,7 @@
 import { Component, HostListener, signal, inject } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,7 @@ export class Navbar {
   protected isScrolled = signal(false);
   protected isMobileMenuOpen = signal(false);
   private translate = inject(TranslateService);
+  protected themeService = inject(ThemeService);
   protected currentLang = signal('en');
 
   protected readonly navLinks = [

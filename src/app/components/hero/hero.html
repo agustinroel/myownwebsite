@@ -11,7 +11,21 @@
 
   <!-- Content -->
   <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pb-20 pt-24">
-    <div class="animate-fade-in-up opacity-0">
+    <div class="animate-fade-in-up opacity-0 flex justify-center mb-6">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-violet/10 border border-accent-violet/20 text-accent-cyan text-xs font-semibold tracking-wider uppercase"
+      >
+        <span class="relative flex h-2 w-2">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"
+          ></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
+        </span>
+        {{ 'HERO.AVAILABILITY' | translate }}
+      </div>
+    </div>
+
+    <div class="animate-fade-in-up opacity-0 animate-delay-100">
       <p
         class="text-sm md:text-base font-medium tracking-[0.3em] uppercase text-text-secondary mb-6"
       >
@@ -19,7 +33,7 @@
       </p>
     </div>
 
-    <div class="animate-fade-in-up opacity-0 animate-delay-100">
+    <div class="animate-fade-in-up opacity-0 animate-delay-200">
       <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6">
         {{ 'HERO.TITLE_PT1' | translate }}
         <span class="gradient-text"> {{ 'HERO.TITLE_PT2' | translate }}</span
@@ -28,7 +42,7 @@
       </h1>
     </div>
 
-    <div class="animate-fade-in-up opacity-0 animate-delay-200">
+    <div class="animate-fade-in-up opacity-0 animate-delay-300">
       <div class="text-xl md:text-2xl text-text-secondary font-light mb-10 h-8">
         <span>{{ displayText() }}</span>
         @if (showCursor()) {
@@ -37,7 +51,7 @@
       </div>
     </div>
 
-    <div class="animate-fade-in-up opacity-0 animate-delay-300">
+    <div class="animate-fade-in-up opacity-0 animate-delay-400">
       <p
         class="text-base md:text-lg text-text-secondary/80 max-w-2xl mx-auto mb-10 leading-relaxed"
       >
@@ -46,19 +60,39 @@
     </div>
 
     <div
-      class="animate-fade-in-up opacity-0 animate-delay-400 flex flex-col sm:flex-row gap-4 justify-center"
+      class="animate-fade-in-up opacity-0 animate-delay-500 flex flex-col sm:flex-row gap-4 justify-center items-center"
     >
       <a
         href="#solutions"
-        class="px-8 py-3.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan text-white font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-accent-violet/25 transition-all duration-300 hover:scale-105"
+        class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan text-white font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-accent-violet/25 transition-all duration-300 hover:scale-105 text-center"
       >
         {{ 'HERO.CTA_PRIMARY' | translate }}
       </a>
       <a
         href="#contact"
-        class="px-8 py-3.5 rounded-full border border-border-glass text-text-secondary font-semibold text-sm tracking-wide hover:border-accent-violet/50 hover:text-text-primary transition-all duration-300"
+        class="w-full sm:w-auto px-8 py-3.5 rounded-full border border-border-glass text-text-secondary font-semibold text-sm tracking-wide hover:border-accent-violet/50 hover:text-text-primary transition-all duration-300 text-center"
       >
         {{ 'HERO.CTA_SECONDARY' | translate }}
+      </a>
+      <a
+        href="assets/cv.pdf"
+        target="_blank"
+        class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/5 border border-white/10 text-text-secondary font-semibold text-sm tracking-wide hover:bg-white/10 hover:text-text-primary transition-all duration-300 flex items-center justify-center gap-2 group"
+      >
+        <svg
+          class="w-4 h-4 transition-transform group-hover:-translate-y-0.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          />
+        </svg>
+        {{ 'HERO.DOWNLOAD_CV' | translate }}
       </a>
     </div>
   </div>

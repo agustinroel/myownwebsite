@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 interface Skill {
   name: string;
@@ -11,7 +12,7 @@ interface Skill {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, ScrollRevealDirective],
   templateUrl: './skills.html',
   styleUrl: './skills.css',
 })
