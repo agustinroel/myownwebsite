@@ -19,7 +19,9 @@
     ],
     "DESCRIPTION": "I transform complex business requirements into scalable, performant, and above all, human interfaces.",
     "CTA_PRIMARY": "See my work",
-    "CTA_SECONDARY": "Let's grab a virtual coffee ☕"
+    "CTA_SECONDARY": "Let's grab a virtual coffee ☕",
+    "AVAILABILITY": "Available for new challenges",
+    "DOWNLOAD_CV": "Download CV"
   },
   "TRUSTED_BY": {
     "TITLE": "Trusted by leading organizations"
@@ -125,13 +127,24 @@
     "CARDS": {
       "BANDMATE": {
         "TITLE": "Bandmate",
-        "DESC": "Platform for musicians to collaborate on songs, chords, and arrangements. Includes an auto-scroll practice mode, setlist management, and community features."
+        "DESC": "Platform for musicians to collaborate on songs, chords, and arrangements. Includes an auto-scroll practice mode, setlist management, and community features.",
+        "CHALLENGE": "Managing the reactive state of multiple audio streams and synced scrolls in real-time without sacrificing performance.",
+        "SOLUTION": "Architecture based on RxJS and Signals for precise synchronization and NgRx for global community state."
       },
       "NAOLOGIC": {
         "TITLE": "Naologic Timeline",
-        "DESC": "Technical test developed for Naologic: an interactive two-pane timeline view with drag & drop, overlap detection, and work order management."
+        "DESC": "Technical test developed for Naologic: an interactive two-pane timeline view with drag & drop, overlap detection, and work order management.",
+        "CHALLENGE": "Implementing a dynamic collision detection algorithm in a bidirectional drag & drop environment.",
+        "SOLUTION": "Use of Angular CDK Drag & Drop combined with optimized date logic for instantaneous validation."
       }
-    }
+    },
+    "DETAILS": "View Technical Details",
+    "LESS": "Show Less",
+    "CHALLENGE_LABEL": "The Challenge",
+    "SOLUTION_LABEL": "The Solution"
+  },
+  "TRUSTED_BY": {
+    "TITLE": "Trusted by leading organizations"
   },
   "FOOTER": {
     "BIO": "Frontend Experience Architect. Software engineer specialized in Angular, dedicated to creating scalable, performant, and human interfaces.",

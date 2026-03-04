@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, ScrollRevealDirective],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })

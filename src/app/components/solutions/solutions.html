@@ -4,7 +4,7 @@
 
   <div class="max-w-7xl mx-auto px-6">
     <!-- Section Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16" appScrollReveal>
       <p class="text-sm font-medium tracking-[0.3em] uppercase text-accent-violet mb-3">
         {{ 'SOLUTIONS.TAG' | translate }}
       </p>
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Solutions Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" appScrollReveal [delay]="200">
       @for (solution of solutions; track solution.translationKey) {
         <div class="glass-card p-6 group relative overflow-hidden flex flex-col items-start">
           <!-- Gradient background hover -->
