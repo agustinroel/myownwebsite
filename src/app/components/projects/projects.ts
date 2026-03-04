@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
@@ -17,7 +16,7 @@ interface Project {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [NgClass, TranslateModule, ScrollRevealDirective],
+  imports: [TranslateModule, ScrollRevealDirective],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })

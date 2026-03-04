@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { UpperCasePipe } from '@angular/common';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-trusted-by',
@@ -11,32 +12,45 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
   styleUrl: './trusted-by.css',
 })
 export class TrustedBy {
-  protected readonly clients = [
-    {
-      name: 'Banco Santander',
-      logo: 'https://static.cdnlogo.com/logos/b/30/banco-santander.svg',
-    },
-    {
-      name: 'MAPFRE',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Mapfre_logo.svg',
-    },
-    {
-      name: 'Generalitat de Catalunya',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Logotipo_de_la_Generalitat_de_Catalunya.svg',
-    },
-    {
-      name: 'Mercamadrid',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Logotipo_de_Mercamadrid.svg',
-    },
-    {
-      name: 'Hestia Alliance',
-      logo: 'https://logo.clearbit.com/hestiaalliance.org',
-    },
-    {
-      name: 'COFA',
-      logo: 'https://logo.clearbit.com/cofa.es',
-    },
-  ];
+  private readonly themeService = inject(ThemeService);
+
+  protected get clients() {
+    return [
+      {
+        name: 'Banco Santander',
+        logo: 'https://static.cdnlogo.com/logos/b/30/banco-santander.svg',
+        className: 'h-6 md:h-7', // Santander is naturally tall, make it smaller
+      },
+      {
+        name: 'MAPFRE',
+        logo: 'assets/logos/mapfre.png',
+        className: 'h-8 md:h-10',
+      },
+      {
+        name: 'Generalitat de Catalunya',
+        logo:
+          this.themeService.theme() === 'light'
+            ? 'assets/logos/catalunya-color.png'
+            : 'assets/logos/catalunya.png',
+        className: 'h-9 md:h-11',
+      },
+      {
+        name: 'Mercamadrid',
+        logo: 'assets/logos/mercamadrid.png',
+        className: 'h-9 md:h-11',
+      },
+      {
+        name: 'Hestia Alliance',
+        logo: 'assets/logos/hestia.svg',
+        className: 'h-8 md:h-10',
+      },
+      {
+        name: 'COFA',
+        logo: 'assets/logos/cofa.svg',
+        className: 'h-9 md:h-11',
+      },
+    ];
+  }
 
   protected onImageError(event: Event) {
     const img = event.target as HTMLImageElement;
