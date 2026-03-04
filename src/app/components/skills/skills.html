@@ -1,0 +1,50 @@
+<section id="skills" class="relative py-24 md:py-32">
+  <!-- Background orb -->
+  <div class="glow-orb w-72 h-72 bg-accent-cyan top-0 right-0"></div>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="text-sm font-medium tracking-[0.3em] uppercase text-accent-cyan mb-3">
+        Capacidades
+      </p>
+      <h2 class="text-3xl md:text-5xl font-bold mb-4">
+        Mi stack <span class="gradient-text">técnico</span>
+      </h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+
+    <!-- Categories -->
+    @for (category of categories; track category) {
+      <div class="mb-12 last:mb-0">
+        <h3 class="text-lg font-semibold text-text-primary mb-6 flex items-center gap-2">
+          <span
+            class="w-2 h-2 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan"
+          ></span>
+          {{ category }}
+        </h3>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          @for (skill of getSkillsByCategory(category); track skill.name) {
+            <div class="glass-card p-5 group">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl">{{ skill.icon }}</span>
+                  <span class="font-medium text-text-primary text-sm">{{ skill.name }}</span>
+                </div>
+                <span class="text-xs font-mono text-accent-cyan">{{ skill.level }}%</span>
+              </div>
+              <!-- Progress bar -->
+              <div class="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+                <div
+                  class="h-full rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan skill-bar-fill"
+                  [style.width.%]="skill.level"
+                ></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
