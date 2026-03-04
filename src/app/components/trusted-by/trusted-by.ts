@@ -17,7 +17,7 @@ export class TrustedBy {
     },
     {
       name: 'MAPFRE',
-      logo: 'assets/logos/mapfre.svg',
+      logo: 'assets/logos/mapfre.png',
     },
     {
       name: 'Generalitat de Catalunya',
