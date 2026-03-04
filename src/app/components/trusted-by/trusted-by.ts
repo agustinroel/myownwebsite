@@ -21,11 +21,11 @@ export class TrustedBy {
     },
     {
       name: 'Generalitat de Catalunya',
-      logo: 'assets/logos/generalitat.svg',
+      logo: 'assets/logos/catalunya.png',
     },
     {
       name: 'Mercamadrid',
-      logo: 'assets/logos/mercamadrid.svg',
+      logo: 'assets/logos/mercamadrid.png',
     },
     {
       name: 'Ayuntamiento de Salou',
@@ -33,11 +33,11 @@ export class TrustedBy {
     },
     {
       name: 'Hestia',
-      logo: 'https://static.cdnlogo.com/logos/h/34/hestia.svg',
+      logo: 'assets/logos/hestia.svg',
     },
     {
       name: 'Colegio de Farmacéuticos de Alicante',
-      logo: 'assets/logos/cofa.png',
+      logo: 'assets/logos/cofa.svg',
     },
   ];
 }
