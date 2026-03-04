@@ -1,0 +1,137 @@
+{
+  "profile": {
+    "name": "Agustín Roel",
+    "role": "Senior Frontend Engineer",
+    "years_experience": 6,
+    "primary_stack": ["Angular", "TypeScript"],
+    "secondary_stack": ["Ionic", "Node.js"],
+    "interests": ["Game Development", "C++", "Unreal Engine 5", "AI-assisted workflows"],
+    "strengths": [
+      "Frontend architecture",
+      "Complex state management",
+      "Enterprise systems",
+      "Dynamic form systems",
+      "Legacy refactoring",
+      "Role-based systems",
+      "Contract-driven frontend development"
+    ]
+  },
+  "experience": [
+    {
+      "company": "MAPFRE",
+      "sector": "Insurance",
+      "project_type": "Microfrontends for policy management",
+      "stack": ["Angular 12", "Reactive Forms"],
+      "responsibilities": [
+        "Development and maintenance of microfrontends",
+        "Policy subscription flows (health and fleets)",
+        "Data rendering and integration with internal APIs",
+        "Component migration and maintenance"
+      ],
+      "business_context": [
+        "Digitalization of insurance processes",
+        "Management of insured portfolios",
+        "Sensitive customer data handling"
+      ],
+      "technical_complexity": "Medium",
+      "environment": "Enterprise production system"
+    },
+    {
+      "company": "Generalitat de Catalunya",
+      "project_name": "AODCat",
+      "sector": "Public Administration",
+      "project_type": "Administrative management system",
+      "stack": ["Angular", "Standalone Components", "Jest"],
+      "responsibilities": [
+        "Dynamic wizard architecture (JSON-driven)",
+        "Multi-entity form rendering",
+        "Auto-save system implementation",
+        "Role-based access logic",
+        "CSV export system matching backend contract",
+        "Debugging complex state issues",
+        "Partial refactor of large legacy component (2600+ lines)"
+      ],
+      "business_context": [
+        "Management of actions, interventions and public calls",
+        "Administrative state transitions",
+        "Multi-country planning forms",
+        "Strict data contract requirements"
+      ],
+      "technical_complexity": "High",
+      "environment": "Public administration system"
+    },
+    {
+      "company": "NTT DATA",
+      "client": "Banco Santander",
+      "sector": "Banking",
+      "project_type": "Internal migration execution frontend",
+      "stack": ["Angular", "Karma", "Jasmine", "Fortify", "SonarQube"],
+      "responsibilities": [
+        "Frontend interface for executing backend migrations",
+        "Validation and control of internal processes",
+        "Working under strict security and quality standards"
+      ],
+      "business_context": [
+        "Internal banking system migrations",
+        "Backend-heavy architecture",
+        "High reliability requirements"
+      ],
+      "technical_complexity": "Medium",
+      "environment": "Banking regulated environment"
+    },
+    {
+      "company": "Netberry",
+      "sector": "Software Consultancy",
+      "project_type": "Multi-client Angular and Ionic development",
+      "stack": ["Angular", "Ionic"],
+      "clients": [
+        {
+          "name": "Mercamadrid",
+          "type": "Mobile Application",
+          "features": [
+            "Product listing",
+            "Product detail view",
+            "Interactive maps",
+            "Geolocation features"
+          ]
+        },
+        {
+          "name": "Salou",
+          "type": "Tourism Web Platform",
+          "features": [
+            "Tourist destinations",
+            "Interactive maps",
+            "Public information rendering"
+          ]
+        },
+        {
+          "name": "COFA (Colegio Oficial de Farmacéuticos de Alicante)",
+          "type": "Secure Mobile Application",
+          "features": [
+            "Member centralization",
+            "Invoice management",
+            "Sensitive financial data",
+            "Authentication and security controls"
+          ]
+        }
+      ],
+      "technical_complexity": "Low to Medium",
+      "environment": "Client-driven multi-project consultancy"
+    }
+  ],
+  "cross_project_experience": {
+    "domains": ["Banking", "Insurance", "Public Administration", "Healthcare", "Tourism"],
+    "data_sensitivity_experience": true,
+    "role_based_access_systems": true,
+    "contract_driven_development": true,
+    "microfrontends_experience": true,
+    "mobile_development_experience": true
+  },
+  "current_focus": [
+    "Improving frontend architecture patterns",
+    "Reducing technical debt",
+    "Exploring C++",
+    "Learning Unreal Engine 5",
+    "Building personal product (Bandmate)"
+  ]
+}

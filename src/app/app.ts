@@ -7,11 +7,12 @@ import { Skills } from './components/skills/skills';
 import { Solutions } from './components/solutions/solutions';
 import { Projects } from './components/projects/projects';
 import { Footer } from './components/footer/footer';
+import { ChatWidget } from './components/chat-widget/chat-widget';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Navbar, Hero, TrustedBy, About, Skills, Solutions, Projects, Footer],
+  imports: [Navbar, Hero, TrustedBy, About, Skills, Solutions, Projects, Footer, ChatWidget],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
