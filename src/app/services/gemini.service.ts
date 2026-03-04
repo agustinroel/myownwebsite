@@ -12,16 +12,14 @@ export interface ChatMessage {
   providedIn: 'root',
 })
 export class GeminiService {
-  private genAI: GoogleGenerativeAI;
-  private model: GenerativeModel | null = null;
-  private chatSession: ChatSession | null = null;
-
   public messages = signal<ChatMessage[]>([]);
   public isTyping = signal<boolean>(false);
   public isInitialized = signal<boolean>(false);
 
+  private systemInstruction: string = '';
+  private apiUrl = '/api/gemini';
+
   constructor(private http: HttpClient) {
-    this.genAI = new GoogleGenerativeAI(environment.geminiApiKey);
     this.initializeChatSession();
   }
 
@@ -38,34 +36,14 @@ export class GeminiService {
         ${JSON.stringify(contextData)}
         `;
 
-        try {
-          this.model = this.genAI.getGenerativeModel({
-            model: 'gemini-2.5-flash',
-            systemInstruction: systemInstruction,
-          });
+        this.messages.set([
+          {
+            role: 'model',
+            text: '¡Hola! Soy el asistente virtual de Agustín. ¿En qué te puedo ayudar hoy? Puedo responder preguntas sobre su experiencia, stack tecnológico o proyectos.',
+          },
+        ]);
 
-          this.chatSession = this.model.startChat({
-            history: [],
-          });
-
-          // Add initial greeting message
-          this.messages.set([
-            {
-              role: 'model',
-              text: '¡Hola! Soy el asistente virtual de Agustín. ¿En qué te puedo ayudar hoy? Puedo responder preguntas sobre su experiencia, stack tecnológico o proyectos.',
-            },
-          ]);
-        } catch (error) {
-          console.error('Gemini init error:', error);
-          this.messages.set([
-            {
-              role: 'model',
-              text: 'Hubo un error configurando la conexión con la inteligencia artificial. Revisa la consola.',
-            },
-          ]);
-        } finally {
-          this.isInitialized.set(true);
-        }
+        this.isInitialized.set(true);
       },
       error: (err) => {
         console.error('Failed to load professional context for Gemini', err);
@@ -80,28 +58,89 @@ export class GeminiService {
     });
   }
 
-  public async sendMessage(userMessage: string) {
-    if (!this.chatSession) return;
+  // Helper to build the history in the format expected by the API
+  private buildHistory(): { role: 'user' | 'model'; parts: { text: string }[] }[] {
+    return this.messages().map((msg) => ({
+      role: msg.role,
+      parts: [{ text: msg.text }],
+    }));
+  }
 
-    // Add user message to UI
+  public async sendMessage(userMessage: string) {
+    // Add user message to UI immediately
     this.messages.update((msgs) => [...msgs, { role: 'user', text: userMessage }]);
     this.isTyping.set(true);
 
-    try {
-      const result = await this.chatSession.sendMessage(userMessage);
-      const responseText = result.response.text();
+    const history = this.buildHistory();
+    // Exclude the current user message from the history array before sending
+    history.pop();
 
-      // Add model response to UI
-      this.messages.update((msgs) => [...msgs, { role: 'model', text: responseText }]);
+    // Create a placeholder for the bot's incoming streaming message
+    this.messages.update((msgs) => [...msgs, { role: 'model', text: '' }]);
+    const botMsgIndex = this.messages().length - 1;
+
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userMessage,
+          history: history,
+          systemInstruction: this.systemInstruction,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+      }
+
+      this.isTyping.set(false); // Done visually typing, start streaming the text in
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder('utf-8');
+
+      if (!reader) throw new Error('No readable stream available');
+
+      let done = false;
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunkString = decoder.decode(value, { stream: true });
+          const lines = chunkString.split('\n');
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6);
+              if (data.trim() === '[DONE]') {
+                done = true;
+                break;
+              }
+              try {
+                const parsed = JSON.parse(data);
+                if (parsed.error) throw new Error(parsed.error);
+                if (parsed.text) {
+                  this.messages.update((msgs) => {
+                    const newMsgs = [...msgs];
+                    newMsgs[botMsgIndex].text += parsed.text;
+                    return newMsgs;
+                  });
+                }
+              } catch (e) {
+                // Ignore silent JSON parse errors for incomplete chunks
+              }
+            }
+          }
+        }
+      }
     } catch (error) {
-      console.error('Error contacting Gemini:', error);
-      this.messages.update((msgs) => [
-        ...msgs,
-        {
-          role: 'model',
-          text: 'Ups, parece que hubo un error al procesar tu mensaje. ¡Tal vez se superó la cuota de la API! Revisa la consola.',
-        },
-      ]);
+      console.error('Error contacting Gemini Edge Proxy:', error);
+      this.messages.update((msgs) => {
+        const newMsgs = [...msgs];
+        newMsgs[botMsgIndex].text =
+          'Ups, parece que hubo un error de conexión con el servidor. ¿Configuraste GEMINI_API_KEY en Vercel? o excediste el tiempo de espera.';
+        return newMsgs;
+      });
     } finally {
       this.isTyping.set(false);
     }
