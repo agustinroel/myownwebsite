@@ -1,37 +1,46 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Initialize the API with the environment variable (which Vercel injects securely)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-export default async function handler(req, res) {
-  // CORS configuration for local development and specific origins if needed
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*'); 
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+export const config = {
+  runtime: 'edge', // Use Edge runtime for better streaming support on Vercel
+};
 
+export default async function handler(req) {
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS, POST',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    });
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   try {
-    const { history, message, systemInstruction } = req.body;
+    const body = await req.json();
+    const { history, message, systemInstruction } = body;
 
     if (!message) {
-      return res.status(400).json({ error: 'Message is required' });
+      return new Response(JSON.stringify({ error: 'Message is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
-    
+
     if (!process.env.GEMINI_API_KEY) {
-      console.error('SERVER ERROR: GEMINI_API_KEY is not defined in the environment variables.');
-      return res.status(500).json({ error: 'Server Configuration Error: API Key missing' });
+      return new Response(JSON.stringify({ error: 'API Key missing' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     const model = genAI.getGenerativeModel({
@@ -43,13 +52,41 @@ export default async function handler(req, res) {
       history: history || [],
     });
 
-    const result = await chatSession.sendMessage(message);
-    const responseText = result.response.text();
+    // Start streaming the response
+    const resultStream = await chatSession.sendMessageStream(message);
 
-    return res.status(200).json({ reply: responseText });
+    // Create a readable stream for the client
+    const stream = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of resultStream.stream) {
+            const chunkText = chunk.text();
+            controller.enqueue(`data: ${JSON.stringify({ text: chunkText })}\n\n`);
+          }
+          controller.enqueue('data: [DONE]\n\n');
+          controller.close();
+        } catch (err) {
+          console.error('Streaming error:', err);
+          controller.enqueue(`data: ${JSON.stringify({ error: 'Error during generation' })}\n\n`);
+          controller.close();
+        }
+      },
+    });
+
+    return new Response(stream, {
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
 
   } catch (error) {
     console.error('Error in Gemini API proxy:', error);
-    return res.status(500).json({ error: 'Internal Server Error fetching from Gemini' });
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
