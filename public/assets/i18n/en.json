@@ -21,6 +21,9 @@
     "CTA_PRIMARY": "See my work",
     "CTA_SECONDARY": "Let's grab a virtual coffee ☕"
   },
+  "TRUSTED_BY": {
+    "TITLE": "Trusted by leading organizations"
+  },
   "ABOUT": {
     "TAG": "ABOUT ME",
     "TITLE_PT1": "More than a ",

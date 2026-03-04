@@ -112,6 +112,18 @@ export class Skills {
     },
     { name: 'CI/CD Pipelines', level: 80, icon: '🔧', categoryKey: 'DEVOPS' },
     {
+      name: 'Ionic Framework',
+      level: 85,
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ionic/ionic-original.svg',
+      categoryKey: 'CORE',
+    },
+    {
+      name: 'Capacitor',
+      level: 80,
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/capacitor/capacitor-original.svg',
+      categoryKey: 'CORE',
+    },
+    {
       name: 'Git / GitFlow',
       level: 90,
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',

@@ -21,6 +21,9 @@
     "CTA_PRIMARY": "Ver lo que hago",
     "CTA_SECONDARY": "Tomemos un café virtual ☕"
   },
+  "TRUSTED_BY": {
+    "TITLE": "Confían en mi arquitectura"
+  },
   "ABOUT": {
     "TAG": "SOBRE MÍ",
     "TITLE_PT1": "Más que un ",
