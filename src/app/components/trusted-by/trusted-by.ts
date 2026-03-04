@@ -17,27 +17,27 @@ export class TrustedBy {
     },
     {
       name: 'MAPFRE',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Mapfre_logo.svg',
+      logo: 'assets/logos/mapfre.svg',
     },
     {
       name: 'Generalitat de Catalunya',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Logotipo_de_la_Generalitat_de_Catalunya.svg',
+      logo: 'assets/logos/generalitat.svg',
     },
     {
       name: 'Mercamadrid',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Mercamadrid.svg',
+      logo: 'assets/logos/mercamadrid.svg',
     },
     {
       name: 'Ayuntamiento de Salou',
-      logo: 'https://www.salou.cat/@@site-logo/logo_Ajuntament_Salou-HC.svg',
+      logo: 'assets/logos/salou.svg',
     },
     {
       name: 'Hestia',
-      logo: 'https://static.cdnlogo.com/logos/h/34/hestia.svg', // Assuming a high-quality logo or placeholder
+      logo: 'https://static.cdnlogo.com/logos/h/34/hestia.svg',
     },
     {
       name: 'Colegio de Farmacéuticos de Alicante',
-      logo: 'https://www.cofalicante.com/images/logo_cofa.png', // Fallback to png if svg not found, or I'll create an SVG placeholder
+      logo: 'assets/logos/cofa.png',
     },
   ];
 }

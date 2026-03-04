@@ -17,10 +17,13 @@
             class="h-8 md:h-12 w-auto object-contain transition-transform duration-500"
             onerror="
               this.style.display = 'none';
-              this.nextElementSibling.style.display = 'block';
+              this.nextElementSibling.classList.remove('hidden');
             "
           />
-          <span class="hidden text-white font-bold tracking-tight text-lg">{{ client.name }}</span>
+          <span
+            class="hidden text-white/40 font-bold tracking-tight text-xs md:text-sm text-center px-2"
+            >{{ client.name }}</span
+          >
         </div>
       }
     </div>
