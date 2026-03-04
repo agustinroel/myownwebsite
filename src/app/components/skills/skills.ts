@@ -17,7 +17,7 @@ interface Skill {
   styleUrl: './skills.css',
 })
 export class Skills {
-  protected readonly categoryKeys = ['CORE', 'STATE', 'UI', 'TESTING', 'DEVOPS'];
+  protected readonly categoryKeys = ['CORE', 'STATE', 'UI', 'TESTING', 'DEVOPS', 'AI'];
 
   protected readonly skills: Skill[] = [
     // CORE
@@ -130,6 +130,11 @@ export class Skills {
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
       categoryKey: 'DEVOPS',
     },
+    // AI
+    { name: 'Antigravity', level: 90, icon: '🚀', categoryKey: 'AI' },
+    { name: 'ChatGPT', level: 95, icon: '🧠', categoryKey: 'AI' },
+    { name: 'Claude Code', level: 90, icon: '💻', categoryKey: 'AI' },
+    { name: 'Model Context Protocol', level: 85, icon: '🔌', categoryKey: 'AI' },
   ];
 
   getSkillsByCategory(categoryKey: string): Skill[] {
