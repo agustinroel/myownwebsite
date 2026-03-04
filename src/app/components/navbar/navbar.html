@@ -1,75 +1,125 @@
 <nav
-  id="navbar"
-  class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-  [class.bg-bg-primary/80]="isScrolled()"
-  [class.backdrop-blur-lg]="isScrolled()"
-  [class.border-b]="isScrolled()"
-  [class.border-border-glass]="isScrolled()"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  [ngClass]="{
+    'py-4': !isScrolled(),
+    'py-2 bg-bg-primary/80 backdrop-blur-lg border-b border-border-glass': isScrolled(),
+  }"
 >
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="#hero" class="text-xl font-bold tracking-tight gradient-text"> &lt;/dev&gt; </a>
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <!-- Brand -->
+    <a href="#hero" class="text-2xl font-bold gradient-text z-50 relative">&lt;/dev&gt;</a>
 
-    <!-- Desktop Links -->
+    <!-- Desktop Menu & Lang -->
     <div class="hidden md:flex items-center gap-8">
-      @for (link of navLinks; track link.href) {
-        <a
-          [href]="link.href"
-          class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 relative group"
+      <ul class="flex items-center gap-8">
+        @for (link of navLinks; track link.href) {
+          <li>
+            <a
+              [href]="link.href"
+              class="text-sm font-medium text-text-secondary hover:text-white transition-colors uppercase tracking-wider"
+            >
+              {{ link.labelKey | translate }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <!-- Language Toggle -->
+      <button
+        (click)="toggleLanguage()"
+        class="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-border-glass bg-bg-secondary/50 hover:bg-bg-secondary transition-all duration-300 group"
+        aria-label="Toggle language"
+      >
+        <div
+          class="w-5 h-5 rounded-full overflow-hidden border border-white/10 transition-transform group-hover:scale-110 shadow-sm"
         >
-          {{ link.label }}
-          <span
-            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-violet to-accent-cyan transition-all duration-300 group-hover:w-full"
-          ></span>
-        </a>
-      }
+          <img
+            [src]="
+              currentLang() === 'en'
+                ? 'https://flagcdn.com/w80/us.png'
+                : 'https://flagcdn.com/w80/es.png'
+            "
+            [alt]="currentLang() === 'en' ? 'English' : 'Español'"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-xs font-bold text-text-primary uppercase tracking-wider">
+          {{ currentLang() }}
+        </span>
+      </button>
     </div>
 
-    <!-- Mobile Toggle -->
-    <button
-      id="mobile-menu-toggle"
-      class="md:hidden text-text-secondary hover:text-text-primary transition-colors"
-      (click)="toggleMobileMenu()"
-      aria-label="Toggle menu"
-    >
-      @if (isMobileMenuOpen()) {
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden flex items-center gap-3 z-50 relative">
+      <button
+        (click)="toggleLanguage()"
+        class="flex items-center gap-2 px-2.5 py-1 rounded-full border border-border-glass bg-bg-secondary/50"
+      >
+        <div class="w-4 h-4 rounded-full overflow-hidden border border-white/10">
+          <img
+            [src]="
+              currentLang() === 'en'
+                ? 'https://flagcdn.com/w80/us.png'
+                : 'https://flagcdn.com/w80/es.png'
+            "
+            class="w-full h-full object-cover"
+            alt=""
           />
+        </div>
+        <span class="text-[10px] font-bold uppercase">{{ currentLang() }}</span>
+      </button>
+
+      <button
+        (click)="toggleMobileMenu()"
+        class="text-text-primary p-2 focus:outline-none"
+        aria-label="Toggle mobile menu"
+      >
+        <svg
+          class="w-6 h-6 transition-transform duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          @if (!isMobileMenuOpen()) {
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          } @else {
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          }
         </svg>
-      } @else {
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      }
-    </button>
+      </button>
+    </div>
   </div>
 
-  <!-- Mobile Menu -->
-  @if (isMobileMenuOpen()) {
-    <div
-      class="md:hidden bg-bg-secondary/95 backdrop-blur-lg border-t border-border-glass animate-fade-in-up"
-    >
-      <div class="px-6 py-4 flex flex-col gap-4">
-        @for (link of navLinks; track link.href) {
+  <!-- Mobile Menu Overlay -->
+  <div
+    class="md:hidden fixed inset-0 bg-bg-primary/95 backdrop-blur-xl z-40 transition-all duration-300 flex flex-col items-center justify-center min-h-screen"
+    [ngClass]="{
+      'opacity-100 pointer-events-auto': isMobileMenuOpen(),
+      'opacity-0 pointer-events-none': !isMobileMenuOpen(),
+    }"
+  >
+    <ul class="flex flex-col items-center gap-8">
+      @for (link of navLinks; track link.href) {
+        <li>
           <a
             [href]="link.href"
-            class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors py-2"
             (click)="closeMobileMenu()"
+            class="text-2xl font-bold text-text-secondary hover:text-white hover:text-shadow-glow transition-all uppercase tracking-widest"
           >
-            {{ link.label }}
+            {{ link.labelKey | translate }}
           </a>
-        }
-      </div>
-    </div>
-  }
+        </li>
+      }
+    </ul>
+  </div>
 </nav>

@@ -1,43 +1,36 @@
 import { Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
 export class About {
   protected readonly stats = [
-    { value: '8+', label: 'Años de experiencia' },
-    { value: 'Angular', label: 'Expertise principal' },
-    { value: 'SOLID', label: 'Principios de diseño' },
-    { value: '∞', label: 'Ganas de aprender' },
+    { value: '8+', translationKey: 'EXP' },
+    { value: '500+', translationKey: 'MENTORING' },
+    { value: '30+', translationKey: 'APPS' },
   ];
 
   protected readonly differentiators = [
     {
       icon: '🏗️',
-      title: 'Arquitectura Escalable',
-      description:
-        'Clean Architecture, microfrontends y librerías compartidas para equipos que crecen sin fricciones.',
+      translationKey: 'ARCHITECTURE',
     },
     {
       icon: '⚡',
-      title: 'Estado Reactivo',
-      description:
-        'Dominio de Signals, NgRx y RxJS. Sé cuándo la simplicidad basta y cuándo hace falta robustez.',
+      translationKey: 'STATE',
     },
     {
       icon: '🚀',
-      title: 'Rendimiento',
-      description:
-        'Lazy Loading avanzado, Change Detection OnPush y flujos RxJS sin fugas de memoria.',
+      translationKey: 'PERFORMANCE',
     },
     {
       icon: '🤝',
-      title: 'Liderazgo & Mentoría',
-      description:
-        'Code Reviews constructivos, estándares con ESLint/Prettier y guía a perfiles junior.',
+      translationKey: 'LEADERSHIP',
     },
   ];
 }

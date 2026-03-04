@@ -1,4 +1,4 @@
-<section id="solutions" class="relative py-24 md:py-32">
+<section id="solutions" class="relative py-24 md:py-32 border-t border-border-glass">
   <!-- Background orb -->
   <div class="glow-orb w-80 h-80 bg-accent-violet bottom-0 left-1/4"></div>
 
@@ -6,25 +6,25 @@
     <!-- Section Header -->
     <div class="text-center mb-16">
       <p class="text-sm font-medium tracking-[0.3em] uppercase text-accent-violet mb-3">
-        Soluciones
+        {{ 'SOLUTIONS.TAG' | translate }}
       </p>
       <h2 class="text-3xl md:text-5xl font-bold mb-4">
-        No solo <span class="gradient-text">"hacer que funcione"</span>
+        {{ 'SOLUTIONS.TITLE_PT1' | translate
+        }}<span class="gradient-text">{{ 'SOLUTIONS.TITLE_PT2' | translate }}</span>
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto mt-4">
-        Mi enfoque no se limita a hacer que funcione, sino a
-        <strong class="text-text-primary">hacer que perdure</strong>.
+        {{ 'SOLUTIONS.DESC' | translate }}
       </p>
       <div class="section-divider mx-auto mt-6"></div>
     </div>
 
     <!-- Solutions Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (solution of solutions; track solution.title) {
-        <div class="glass-card p-6 group relative overflow-hidden">
+      @for (solution of solutions; track solution.translationKey) {
+        <div class="glass-card p-6 group relative overflow-hidden flex flex-col items-start">
           <!-- Gradient background hover -->
           <div
-            class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0 pointer-events-none"
             [ngClass]="solution.gradient"
           ></div>
 
@@ -36,24 +36,22 @@
             <h3
               class="text-lg font-semibold text-text-primary mb-3 group-hover:text-white transition-colors"
             >
-              {{ solution.title }}
+              {{ 'SOLUTIONS.CARDS.' + solution.translationKey + '.TITLE' | translate }}
             </h3>
 
             <!-- Description -->
             <p class="text-sm text-text-secondary leading-relaxed mb-4">
-              {{ solution.description }}
+              {{ 'SOLUTIONS.CARDS.' + solution.translationKey + '.DESC' | translate }}
             </p>
 
             <!-- Achievement highlight -->
-            @if (solution.achievement) {
-              <p class="text-xs text-accent-cyan italic mb-4 flex items-start gap-1.5">
-                <span class="mt-0.5">✦</span>
-                {{ solution.achievement }}
-              </p>
-            }
+            <p class="text-xs text-accent-cyan italic mb-4 flex items-start gap-1.5">
+              <span class="mt-0.5">✦</span>
+              {{ 'SOLUTIONS.CARDS.' + solution.translationKey + '.ACHIEVEMENT' | translate }}
+            </p>
 
             <!-- Tags -->
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 mt-auto">
               @for (tag of solution.tags; track tag) {
                 <span
                   class="text-xs px-3 py-1 rounded-full border border-border-glass text-text-secondary font-medium"

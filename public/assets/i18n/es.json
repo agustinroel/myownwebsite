@@ -1,0 +1,141 @@
+{
+  "NAV": {
+    "HOME": "Inicio",
+    "ABOUT": "Sobre mí",
+    "SKILLS": "Skills",
+    "SOLUTIONS": "Soluciones",
+    "PROJECTS": "Proyectos",
+    "CONTACT": "Contacto"
+  },
+  "HERO": {
+    "SUBTITLE": "Arquitecto de Experiencias Frontend",
+    "TITLE_PT1": "Código limpio,",
+    "TITLE_PT2": " experiencias",
+    "TITLE_PT3": "humanas",
+    "ROLES": [
+      "Senior Frontend Developer",
+      "Arquitecto Angular",
+      "Mentor & Tech Lead"
+    ],
+    "DESCRIPTION": "Transformo requisitos de negocio complejos en interfaces escalables, performantes y, sobre todo, humanas.",
+    "CTA_PRIMARY": "Ver lo que hago",
+    "CTA_SECONDARY": "Tomemos un café virtual ☕"
+  },
+  "ABOUT": {
+    "TAG": "SOBRE MÍ",
+    "TITLE_PT1": "Más que un ",
+    "TITLE_PT2": "programador",
+    "BIO_TITLE": "Ingeniero de Software · Arquitecto Angular",
+    "BIO_P1": "No soy solo un programador que escribe código; soy un ingeniero de software especializado en el ecosistema de Angular, dedicado a transformar requisitos de negocio complejos en interfaces de usuario escalables, performantes y, sobre todo, humanas.",
+    "BIO_P2_PRE": "Mi filosofía de trabajo se basa en una premisa simple: ",
+    "BIO_P2_QUOTE": "el código debe ser tan limpio como la experiencia que genera.",
+    "BIO_P2_POST": " He dejado de ver a Angular como un simple framework para entenderlo como una plataforma de ingeniería robusta.",
+    "CARDS": {
+      "ARCHITECTURE": {
+        "TITLE": "Arquitectura Escalable",
+        "DESC": "Diseño de Clean Architecture, domain-driven design y Microfrontends con Nx."
+      },
+      "STATE": {
+        "TITLE": "Estado Reactivo",
+        "DESC": "Gestión avanzada con NgRx, Signals y RxJS para flujos predictivos sin race conditions."
+      },
+      "PERFORMANCE": {
+        "TITLE": "Rendimiento Extremo",
+        "DESC": "Optimización de Change Detection, OnPush, lazy loading y web vitals."
+      },
+      "LEADERSHIP": {
+        "TITLE": "Liderazgo & Mentoría",
+        "DESC": "Potencio equipos a través de code reviews, buenas prácticas y mentoría constante."
+      }
+    },
+    "STATS": {
+      "EXP": "Años de Experiencia",
+      "MENTORING": "Horas Mentoría",
+      "APPS": "Apps Escaladas"
+    }
+  },
+  "SKILLS": {
+    "TAG": "SKILLS",
+    "TITLE_PT1": "Mi arsenal ",
+    "TITLE_PT2": "técnico",
+    "DESC": "Las herramientas que utilizo en mi día a día para construir software empresarial robusto y escalable.",
+    "CATEGORIES": {
+      "CORE": "Framework & Core",
+      "STATE": "State Management",
+      "UI": "UI & Styling",
+      "TESTING": "Testing & Calidad",
+      "DEVOPS": "Herramientas & DevOps"
+    }
+  },
+  "SOLUTIONS": {
+    "TAG": "SOLUCIONES",
+    "TITLE_PT1": "¿Qué puedo ",
+    "TITLE_PT2": "hacer por ti?",
+    "DESC": "No solo 'hacer que funcione', sino 'hacer que perdure'. Enfocado en resolver problemas reales de negocio con código escalable.",
+    "ACHIEVEMENT": "Logro destacado:",
+    "CARDS": {
+      "ARCHITECTURE": {
+        "TITLE": "Arquitectura Frontend Escalable",
+        "DESC": "Diseño arquitecturas robustas basadas en Clean Architecture y Domain-Driven Design (DDD). Implemento monorepos con Nx para compartir código eficientemente y mantener límites claros entre dominios.",
+        "ACHIEVEMENT": "Migración de app monolítica a Nx con 30+ librerías escalables."
+      },
+      "PERFORMANCE": {
+        "TITLE": "Optimización de Rendimiento",
+        "DESC": "Audito y optimizo aplicaciones lentas. Implemento estrategias avanzadas de lazy loading, afino el Change Detection (OnPush) y elimino fugas de memoria con RxJS puro.",
+        "ACHIEVEMENT": "Reducción del 40% en tiempos de carga en dashboards complejos."
+      },
+      "STATE": {
+        "TITLE": "Gestión de Estado Reactivo",
+        "DESC": "Implemento arquitecturas de estado predecibles. Desde flujos empresariales complejos con NgRx hasta reactividad moderna y ligera con Angular Signals.",
+        "ACHIEVEMENT": "Eliminación de flujos de compra cruzados en tiempo real."
+      },
+      "LEADERSHIP": {
+        "TITLE": "Liderazgo Técnico & Mentoría",
+        "DESC": "Guío a equipos de desarrollo a adoptar buenas prácticas. Establezco reglas estrictas de CI/CD, ESLint, Prettier y realizo code reviews constructivos para elevar el nivel del equipo.",
+        "ACHIEVEMENT": "Mentoría de 10+ desarrolladores junior/ssr a roles senior."
+      },
+      "UI": {
+        "TITLE": "Interfaces de Usuario Premium (UI/UX)",
+        "DESC": "Construyo interfaces pixel-perfect usando Tailwind CSS y Angular Material, priorizando la accesibilidad (A11y) y creando sistemas de diseño de componentes agnósticos.",
+        "ACHIEVEMENT": "Aplicaciones inclusivas y profesionales desde la base."
+      },
+      "DEVOPS": {
+        "TITLE": "DevOps & Tooling",
+        "DESC": "Automatizo todo lo automatizable. Configuro pipelines eficaces en GitHub Actions, dockerizo apps para entornos consistentes y manejo semantic versioning.",
+        "ACHIEVEMENT": "Despliegues automatizados y sin interrupciones."
+      }
+    }
+  },
+  "PROJECTS": {
+    "TAG": "PROYECTOS",
+    "TITLE_PT1": "Lo que construyo en mi ",
+    "TITLE_PT2": "tiempo libre",
+    "DESC": "Proyectos personales y pruebas técnicas que reflejan mi pasión por el desarrollo y la calidad del código.",
+    "TYPE": {
+      "PERSONAL": "Proyecto Personal",
+      "TECHNICAL": "Prueba Técnica"
+    },
+    "LINKS": {
+      "LIVE": "Ver Live",
+      "GITHUB": "GitHub"
+    },
+    "CARDS": {
+      "BANDMATE": {
+        "TITLE": "Bandmate",
+        "DESC": "Plataforma para músicos que permite gestionar canciones, acordes y arreglos de forma colaborativa. Incluye un modo de práctica con auto-scroll, gestión de setlists y comunidad."
+      },
+      "NAOLOGIC": {
+        "TITLE": "Naologic Timeline",
+        "DESC": "Prueba técnica desarrollada para Naologic: vista de timeline interactiva de dos paneles con drag & drop, detección de solapamientos y gestión de órdenes de trabajo."
+      }
+    }
+  },
+  "FOOTER": {
+    "BIO": "Arquitecto de Experiencias Frontend. Ingeniero de software especializado en Angular, dedicado a crear interfaces escalables, performantes y humanas.",
+    "CONTACT": "Contacto",
+    "TALK": "¿Hablamos?",
+    "TALK_DESC": "¿Tienes un proyecto en mente o quieres tomar un café virtual? ☕ No dudes en contactarme.",
+    "RIGHTS": "Diseñado y desarrollado con 💜 y Angular 21",
+    "QUOTE": "El código debe ser tan limpio como la experiencia que genera."
+  }
+}

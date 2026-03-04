@@ -10,20 +10,21 @@
   ></div>
 
   <!-- Content -->
-  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pb-20">
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pb-20 pt-24">
     <div class="animate-fade-in-up opacity-0">
       <p
         class="text-sm md:text-base font-medium tracking-[0.3em] uppercase text-text-secondary mb-6"
       >
-        Arquitecto de Experiencias Frontend
+        {{ 'HERO.SUBTITLE' | translate }}
       </p>
     </div>
 
     <div class="animate-fade-in-up opacity-0 animate-delay-100">
       <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6">
-        Código limpio,
-        <span class="gradient-text"> experiencias</span><br />
-        humanas
+        {{ 'HERO.TITLE_PT1' | translate }}
+        <span class="gradient-text"> {{ 'HERO.TITLE_PT2' | translate }}</span
+        ><br />
+        {{ 'HERO.TITLE_PT3' | translate }}
       </h1>
     </div>
 
@@ -40,8 +41,7 @@
       <p
         class="text-base md:text-lg text-text-secondary/80 max-w-2xl mx-auto mb-10 leading-relaxed"
       >
-        Transformo requisitos de negocio complejos en interfaces escalables, performantes y, sobre
-        todo, humanas.
+        {{ 'HERO.DESCRIPTION' | translate }}
       </p>
     </div>
 
@@ -52,13 +52,13 @@
         href="#solutions"
         class="px-8 py-3.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan text-white font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-accent-violet/25 transition-all duration-300 hover:scale-105"
       >
-        Ver lo que hago
+        {{ 'HERO.CTA_PRIMARY' | translate }}
       </a>
       <a
         href="#contact"
         class="px-8 py-3.5 rounded-full border border-border-glass text-text-secondary font-semibold text-sm tracking-wide hover:border-accent-violet/50 hover:text-text-primary transition-all duration-300"
       >
-        Tomemos un café virtual ☕
+        {{ 'HERO.CTA_SECONDARY' | translate }}
       </a>
     </div>
   </div>

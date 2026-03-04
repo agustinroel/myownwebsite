@@ -1,0 +1,141 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "SKILLS": "Skills",
+    "SOLUTIONS": "Solutions",
+    "PROJECTS": "Projects",
+    "CONTACT": "Contact"
+  },
+  "HERO": {
+    "SUBTITLE": "Frontend Experience Architect",
+    "TITLE_PT1": "Clean code,",
+    "TITLE_PT2": " human",
+    "TITLE_PT3": "experiences",
+    "ROLES": [
+      "Senior Frontend Developer",
+      "Angular Architect",
+      "Mentor & Tech Lead"
+    ],
+    "DESCRIPTION": "I transform complex business requirements into scalable, performant, and above all, human interfaces.",
+    "CTA_PRIMARY": "See my work",
+    "CTA_SECONDARY": "Let's grab a virtual coffee ☕"
+  },
+  "ABOUT": {
+    "TAG": "ABOUT ME",
+    "TITLE_PT1": "More than a ",
+    "TITLE_PT2": "programmer",
+    "BIO_TITLE": "Software Engineer · Angular Architect",
+    "BIO_P1": "I am not just a programmer who writes code; I am a software engineer specialized in the Angular ecosystem, dedicated to transforming complex business requirements into scalable, performant, and above all, human user interfaces.",
+    "BIO_P2_PRE": "My work philosophy is based on a simple premise: ",
+    "BIO_P2_QUOTE": "the code must be as clean as the experience it generates.",
+    "BIO_P2_POST": " I've stopped seeing Angular as a simple framework to understand it as a robust engineering platform.",
+    "CARDS": {
+      "ARCHITECTURE": {
+        "TITLE": "Scalable Architecture",
+        "DESC": "Design of Clean Architecture, domain-driven design, and Microfrontends with Nx."
+      },
+      "STATE": {
+        "TITLE": "Reactive State",
+        "DESC": "Advanced management with NgRx, Signals, and RxJS for predictive flows without race conditions."
+      },
+      "PERFORMANCE": {
+        "TITLE": "Extreme Performance",
+        "DESC": "Optimization of Change Detection, OnPush, lazy loading, and web vitals."
+      },
+      "LEADERSHIP": {
+        "TITLE": "Leadership & Mentoring",
+        "DESC": "I empower teams through code reviews, best practices, and constant mentoring."
+      }
+    },
+    "STATS": {
+      "EXP": "Years Experience",
+      "MENTORING": "Hours Mentoring",
+      "APPS": "Apps Scaled"
+    }
+  },
+  "SKILLS": {
+    "TAG": "SKILLS",
+    "TITLE_PT1": "My technical ",
+    "TITLE_PT2": "arsenal",
+    "DESC": "The tools I use daily to build robust and scalable enterprise software.",
+    "CATEGORIES": {
+      "CORE": "Framework & Core",
+      "STATE": "State Management",
+      "UI": "UI & Styling",
+      "TESTING": "Testing & Quality",
+      "DEVOPS": "Tools & DevOps"
+    }
+  },
+  "SOLUTIONS": {
+    "TAG": "SOLUTIONS",
+    "TITLE_PT1": "What can I ",
+    "TITLE_PT2": "do for you?",
+    "DESC": "Not just 'make it work', but 'make it last'. Focused on solving real business problems with scalable code.",
+    "ACHIEVEMENT": "Highlighted achievement:",
+    "CARDS": {
+      "ARCHITECTURE": {
+        "TITLE": "Scalable Frontend Architecture",
+        "DESC": "I design robust architectures based on Clean Architecture and Domain-Driven Design (DDD). I implement monorepos with Nx to share code efficiently and maintain clear boundaries between domains.",
+        "ACHIEVEMENT": "Migration of a monolithic app to Nx with 30+ scalable libraries."
+      },
+      "PERFORMANCE": {
+        "TITLE": "Performance Optimization",
+        "DESC": "I audit and optimize slow applications. I implement advanced lazy loading strategies, fine-tune Change Detection (OnPush), and eliminate memory leaks using pure RxJS.",
+        "ACHIEVEMENT": "40% reduction in TTI (Time to Interactive) in complex dashboards."
+      },
+      "STATE": {
+        "TITLE": "Reactive State Management",
+        "DESC": "I implement predictable state architectures. From complex enterprise flows with NgRx to modern, lightweight reactivity using Angular Signals.",
+        "ACHIEVEMENT": "Elimination of race conditions in real-time purchasing flows."
+      },
+      "LEADERSHIP": {
+        "TITLE": "Technical Leadership & Mentoring",
+        "DESC": "I guide development teams to adopt best practices. I establish strict CI/CD rules, ESLint, Prettier, and conduct constructive code reviews to level up the team.",
+        "ACHIEVEMENT": "Mentored 10+ junior/ssr developers to senior roles."
+      },
+      "UI": {
+        "TITLE": "Premium User Interfaces (UI/UX)",
+        "DESC": "I build pixel-perfect interfaces with Tailwind CSS and Angular Material, prioritizing accessibility (A11y) and creating reusable, agnostic component design systems.",
+        "ACHIEVEMENT": "Inclusive and professional applications from the ground up."
+      },
+      "DEVOPS": {
+        "TITLE": "DevOps & Tooling",
+        "DESC": "I automate everything. I set up GitHub Actions workflows, Dockerize applications for consistent environments, and manage semantic versioning with GitFlow.",
+        "ACHIEVEMENT": "Automated deployments with zero downtime."
+      }
+    }
+  },
+  "PROJECTS": {
+    "TAG": "PROJECTS",
+    "TITLE_PT1": "What I build in my ",
+    "TITLE_PT2": "free time",
+    "DESC": "Personal projects and technical tests that reflect my passion for development and code quality.",
+    "TYPE": {
+      "PERSONAL": "Personal Project",
+      "TECHNICAL": "Technical Test"
+    },
+    "LINKS": {
+      "LIVE": "Live Demo",
+      "GITHUB": "GitHub"
+    },
+    "CARDS": {
+      "BANDMATE": {
+        "TITLE": "Bandmate",
+        "DESC": "Platform for musicians to collaborate on songs, chords, and arrangements. Includes an auto-scroll practice mode, setlist management, and community features."
+      },
+      "NAOLOGIC": {
+        "TITLE": "Naologic Timeline",
+        "DESC": "Technical test developed for Naologic: an interactive two-pane timeline view with drag & drop, overlap detection, and work order management."
+      }
+    }
+  },
+  "FOOTER": {
+    "BIO": "Frontend Experience Architect. Software engineer specialized in Angular, dedicated to creating scalable, performant, and human interfaces.",
+    "CONTACT": "Contact",
+    "TALK": "Let's talk?",
+    "TALK_DESC": "Do you have a project in mind or want to grab a virtual coffee? ☕ Don't hesitate to contact me.",
+    "RIGHTS": "Designed and developed with 💜 and Angular 21",
+    "QUOTE": "The code must be as clean as the experience it generates."
+  }
+}

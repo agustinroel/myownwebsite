@@ -5,15 +5,14 @@
       <div>
         <a href="#hero" class="text-2xl font-bold gradient-text mb-4 inline-block">&lt;/dev&gt;</a>
         <p class="text-sm text-text-secondary leading-relaxed">
-          Arquitecto de Experiencias Frontend. Ingeniero de software especializado en Angular,
-          dedicado a crear interfaces escalables, performantes y humanas.
+          {{ 'FOOTER.BIO' | translate }}
         </p>
       </div>
 
       <!-- Contact Info -->
       <div>
         <h4 class="text-sm font-semibold uppercase tracking-wider text-text-primary mb-4">
-          Contacto
+          {{ 'FOOTER.CONTACT' | translate }}
         </h4>
         <ul class="space-y-3">
           <li>
@@ -102,10 +101,10 @@
       <!-- CTA -->
       <div>
         <h4 class="text-sm font-semibold uppercase tracking-wider text-text-primary mb-4">
-          ¿Hablamos?
+          {{ 'FOOTER.TALK' | translate }}
         </h4>
         <p class="text-sm text-text-secondary mb-6">
-          ¿Tienes un proyecto en mente o quieres tomar un café virtual? ☕ No dudes en contactarme.
+          {{ 'FOOTER.TALK_DESC' | translate }}
         </p>
         <div class="flex gap-3">
           @for (link of socialLinks; track link.name) {
@@ -127,10 +126,10 @@
       class="pt-8 border-t border-border-glass flex flex-col sm:flex-row items-center justify-between gap-4"
     >
       <p class="text-xs text-text-secondary">
-        &copy; {{ currentYear }} Agustín Roel — Diseñado y desarrollado con 💜 y Angular 21
+        &copy; {{ currentYear }} Agustín Roel — {{ 'FOOTER.RIGHTS' | translate }}
       </p>
       <p class="text-xs text-text-secondary italic">
-        El código debe ser tan limpio como la experiencia que genera.
+        {{ 'FOOTER.QUOTE' | translate }}
       </p>
     </div>
   </div>

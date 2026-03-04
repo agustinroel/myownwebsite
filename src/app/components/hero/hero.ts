@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
@@ -13,7 +15,6 @@ export class Hero implements OnInit, OnDestroy {
   private readonly roles = [
     'Senior Frontend Developer',
     'Arquitecto Angular',
-    'Ingeniero de Software',
     'Mentor & Tech Lead',
   ];
   private roleIndex = 0;
