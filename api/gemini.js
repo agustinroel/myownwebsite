@@ -1,48 +1,34 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+export default async function handler(req, res) {
+  // CORS Headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-export const config = {
-  runtime: 'edge', // Use Edge runtime for better streaming support on Vercel
-};
-
-export default async function handler(req) {
   if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
-    });
+    res.status(200).end();
+    return;
   }
 
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
   try {
-    const body = await req.json();
-    const { history, message, systemInstruction } = body;
+    const { history, message, systemInstruction } = req.body;
 
     if (!message) {
-      return new Response(JSON.stringify({ error: 'Message is required' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return res.status(400).json({ error: 'Message is required' });
     }
 
-    if (!process.env.GEMINI_API_KEY) {
-      return new Response(JSON.stringify({ error: 'API Key missing' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'API Key missing in environment' });
     }
 
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
       model: 'gemini-2.5-flash',
       systemInstruction: systemInstruction,
@@ -52,41 +38,32 @@ export default async function handler(req) {
       history: history || [],
     });
 
-    // Start streaming the response
+    // Configure headers for Server-Sent Events
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.flushHeaders();
+
+    // Start streaming from Gemini
     const resultStream = await chatSession.sendMessageStream(message);
 
-    // Create a readable stream for the client
-    const stream = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const chunk of resultStream.stream) {
-            const chunkText = chunk.text();
-            controller.enqueue(`data: ${JSON.stringify({ text: chunkText })}\n\n`);
-          }
-          controller.enqueue('data: [DONE]\n\n');
-          controller.close();
-        } catch (err) {
-          console.error('Streaming error:', err);
-          controller.enqueue(`data: ${JSON.stringify({ error: 'Error during generation' })}\n\n`);
-          controller.close();
-        }
-      },
-    });
+    for await (const chunk of resultStream.stream) {
+      const chunkText = chunk.text();
+      res.write(`data: ${JSON.stringify({ text: chunkText })}\n\n`);
+    }
 
-    return new Response(stream, {
-      headers: {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+    res.write('data: [DONE]\n\n');
+    res.end();
 
   } catch (error) {
     console.error('Error in Gemini API proxy:', error);
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    if (!res.headersSent) {
+      return res.status(500).json({ 
+        error: 'Vercel Serverless Error: ' + (error.message || 'Unknown error') 
+      });
+    } else {
+      res.write(`data: ${JSON.stringify({ error: error.message || 'Error during generation' })}\n\n`);
+      res.end();
+    }
   }
 }
