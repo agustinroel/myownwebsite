@@ -70,7 +70,9 @@ export class GeminiService {
 
   // Helper to build the history in the format expected by the API
   private buildHistory(): { role: 'user' | 'model'; parts: { text: string }[] }[] {
-    return this.messages().map((msg) => ({
+    // Skip the first message (greeting) so history always starts with 'user'
+    const historyMsgs = this.messages().slice(1);
+    return historyMsgs.map((msg) => ({
       role: msg.role,
       parts: [{ text: msg.text }],
     }));
