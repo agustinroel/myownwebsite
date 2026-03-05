@@ -1,7 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-
 export const config = {
   runtime: 'edge', // Use Edge runtime for better streaming support on Vercel
 };
@@ -36,13 +34,15 @@ export default async function handler(req) {
       });
     }
 
-    if (!process.env.GEMINI_API_KEY) {
-      return new Response(JSON.stringify({ error: 'API Key missing' }), {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return new Response(JSON.stringify({ error: 'API Key missing in environment' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
       model: 'gemini-2.5-flash',
       systemInstruction: systemInstruction,
@@ -58,16 +58,17 @@ export default async function handler(req) {
     // Create a readable stream for the client
     const stream = new ReadableStream({
       async start(controller) {
+        const encoder = new TextEncoder();
         try {
           for await (const chunk of resultStream.stream) {
             const chunkText = chunk.text();
-            controller.enqueue(`data: ${JSON.stringify({ text: chunkText })}\n\n`);
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: chunkText })}\n\n`));
           }
-          controller.enqueue('data: [DONE]\n\n');
+          controller.enqueue(encoder.encode('data: [DONE]\n\n'));
           controller.close();
         } catch (err) {
           console.error('Streaming error:', err);
-          controller.enqueue(`data: ${JSON.stringify({ error: 'Error during generation' })}\n\n`);
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: err.message || 'Error during generation' })}\n\n`));
           controller.close();
         }
       },
@@ -84,7 +85,10 @@ export default async function handler(req) {
 
   } catch (error) {
     console.error('Error in Gemini API proxy:', error);
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+    return new Response(JSON.stringify({ 
+      error: 'Vercel Serverless Error: ' + (error.message || 'Unknown error'),
+      stack: error.stack
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
