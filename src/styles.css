@@ -172,6 +172,11 @@ body {
   overflow: hidden;
 }
 
+.glass-card:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 4px;
+}
+
 /* Subtle inset shadow for depth */
 .glass-card::before {
   content: '';
