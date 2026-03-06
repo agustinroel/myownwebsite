@@ -54,10 +54,10 @@
               <div
                 class="p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/15 transition-all duration-300"
               >
-                <div class="flex items-center justify-between mb-3 gap-2">
-                  <div class="flex items-center gap-3 min-w-0">
+                <div class="flex items-start sm:items-center justify-between mb-3 gap-2">
+                  <div class="flex items-start sm:items-center gap-3 min-w-0 pr-2">
                     <div
-                      class="w-6 h-6 flex-shrink-0 flex items-center justify-center filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      class="w-6 h-6 flex-shrink-0 flex items-center justify-center filter grayscale group-hover:grayscale-0 transition-all duration-300 mt-0.5 sm:mt-0"
                     >
                       @if (skill.icon.startsWith('http')) {
                         <img
@@ -70,12 +70,13 @@
                         <span class="text-xl drop-shadow-md">{{ skill.icon }}</span>
                       }
                     </div>
-                    <span class="font-medium text-text-primary text-sm tracking-wide">{{
-                      skill.name
-                    }}</span>
+                    <span
+                      class="font-medium text-text-primary text-[13px] sm:text-sm tracking-wide break-words whitespace-normal leading-tight"
+                      >{{ skill.name }}</span
+                    >
                   </div>
                   <span
-                    class="flex-shrink-0 text-xs font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-violet to-accent-cyan"
+                    class="flex-shrink-0 text-xs font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-violet to-accent-cyan mt-1 sm:mt-0"
                     >{{ skill.level }}%</span
                   >
                 </div>
