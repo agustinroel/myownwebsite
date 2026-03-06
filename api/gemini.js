@@ -4,6 +4,9 @@ export const config = {
   runtime: 'edge', // Use Edge runtime for better streaming support on Vercel
 };
 
+// Global cache for warm container re-use
+let genAIInstance = null;
+
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
     return new Response(null, {
@@ -42,8 +45,12 @@ export default async function handler(req) {
       });
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({
+    // Reuse genAI instance across warm requests
+    if (!genAIInstance) {
+      genAIInstance = new GoogleGenerativeAI(apiKey);
+    }
+    
+    const model = genAIInstance.getGenerativeModel({
       model: 'gemini-2.5-flash',
       systemInstruction: systemInstruction,
     });

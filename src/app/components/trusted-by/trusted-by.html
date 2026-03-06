@@ -21,6 +21,7 @@
             (error)="onImageError($event)"
             [class]="client.className"
             class="w-auto object-contain transition-all duration-500"
+            loading="lazy"
           />
           <span class="hidden text-sm font-bold tracking-wider text-text-secondary">
             {{ client.name }}
