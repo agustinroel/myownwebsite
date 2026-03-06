@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule, NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
@@ -12,7 +13,7 @@ interface Skill {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [TranslateModule, ScrollRevealDirective],
+  imports: [TranslateModule, ScrollRevealDirective, NgClass],
   templateUrl: './skills.html',
   styleUrl: './skills.css',
 })
@@ -54,7 +55,7 @@ export class Skills {
       categoryKey: 'STATE',
     },
     { name: 'Signals', level: 85, icon: '⚡', categoryKey: 'STATE' },
-    { name: 'BehaviorSubject / Services', level: 95, icon: '🔗', categoryKey: 'STATE' },
+    { name: 'BehaviorSubject', level: 95, icon: '🔗', categoryKey: 'STATE' },
 
     // UI
     {

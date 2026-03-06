@@ -11,7 +11,7 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive'
 })
 export class About {
   protected readonly stats = [
-    { value: '8+', translationKey: 'EXP' },
+    { value: '6+', translationKey: 'EXP' },
     { value: '500+', translationKey: 'MENTORING' },
     { value: '30+', translationKey: 'APPS' },
   ];

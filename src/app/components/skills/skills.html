@@ -1,64 +1,95 @@
 <section id="skills" class="relative py-24 md:py-32 border-t border-border-glass">
-  <!-- Background orb -->
-  <div class="glow-orb w-72 h-72 bg-accent-cyan top-0 right-0"></div>
-
   <div class="max-w-7xl mx-auto px-6">
     <!-- Section Header -->
     <div class="text-center mb-16" appScrollReveal>
       <p class="text-sm font-medium tracking-[0.3em] uppercase text-accent-cyan mb-3">
         {{ 'SKILLS.TAG' | translate }}
       </p>
-      <h2 class="text-3xl md:text-5xl font-bold mb-4">
-        {{ 'SKILLS.TITLE_PT1' | translate
-        }}<span class="gradient-text">{{ 'SKILLS.TITLE_PT2' | translate }}</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">
+        {{ 'SKILLS.TITLE_PT1' | translate }}
+        <span class="gradient-text">{{ 'SKILLS.TITLE_PT2' | translate }}</span>
       </h2>
-      <p class="text-text-secondary max-w-2xl mx-auto mt-4">
+      <p class="text-text-secondary max-w-2xl mx-auto mt-4 leading-relaxed">
         {{ 'SKILLS.DESC' | translate }}
       </p>
       <div class="section-divider mx-auto mt-6"></div>
     </div>
 
-    <!-- Categories -->
-    @for (cat of categoryKeys; track cat; let i = $index) {
-      <div class="mb-12 last:mb-0" appScrollReveal [delay]="i * 150">
-        <h3 class="text-lg font-semibold text-text-primary mb-6 flex items-center gap-2">
-          <span
-            class="w-2 h-2 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan"
-          ></span>
-          {{ 'SKILLS.CATEGORIES.' + cat | translate }}
-        </h3>
+    <!-- BENTO BOX GRID MULTI-COLUMN -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+      <!-- Categories (dynamically sized based on index to create Bento effect) -->
+      @for (cat of categoryKeys; track cat; let i = $index) {
+        <div
+          class="glass-card p-6 md:p-8 flex flex-col group relative overflow-hidden"
+          [ngClass]="{
+            'md:col-span-2 lg:col-span-2': i === 0 || i === 2,
+            'md:col-span-1 lg:col-span-1': i === 1 || i === 3,
+            'md:col-span-2 lg:col-span-3': i === 4,
+          }"
+          appScrollReveal
+          [delay]="i * 150"
+        >
+          <!-- Animated Glow Hover Inside Card -->
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-accent-cyan/5 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-accent-violet/15 transition-colors duration-700 pointer-events-none"
+          ></div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          @for (skill of getSkillsByCategory(cat); track skill.name) {
-            <div class="glass-card p-5 group">
-              <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-3">
-                  <div class="w-6 h-6 flex items-center justify-center transition-all duration-300">
-                    @if (skill.icon.startsWith('http')) {
-                      <img
-                        [src]="skill.icon"
-                        [alt]="skill.name"
-                        class="w-full h-full object-contain"
-                      />
-                    } @else {
-                      <span class="text-xl">{{ skill.icon }}</span>
-                    }
+          <h3 class="text-xl font-bold text-text-primary mb-6 flex items-center gap-3">
+            <span
+              class="w-3 h-3 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan shadow-[0_0_10px_#8b5cf6]"
+            ></span>
+            {{ 'SKILLS.CATEGORIES.' + cat | translate }}
+          </h3>
+
+          <!-- Sub-grid for the actual skills inside the Bento Card -->
+          <div
+            class="grid gap-4 w-full"
+            [ngClass]="{
+              'grid-cols-1 sm:grid-cols-2': i === 0 || i === 2,
+              'grid-cols-1': i === 1 || i === 3,
+              'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4': i === 4,
+            }"
+          >
+            @for (skill of getSkillsByCategory(cat); track skill.name) {
+              <div
+                class="p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/15 transition-all duration-300"
+              >
+                <div class="flex items-center justify-between mb-3 gap-2">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <div
+                      class="w-6 h-6 flex-shrink-0 flex items-center justify-center filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    >
+                      @if (skill.icon.startsWith('http')) {
+                        <img
+                          [src]="skill.icon"
+                          [alt]="skill.name"
+                          class="w-full h-full object-contain drop-shadow-md"
+                        />
+                      } @else {
+                        <span class="text-xl drop-shadow-md">{{ skill.icon }}</span>
+                      }
+                    </div>
+                    <span class="font-medium text-text-primary text-sm tracking-wide">{{
+                      skill.name
+                    }}</span>
                   </div>
-                  <span class="font-medium text-text-primary text-sm">{{ skill.name }}</span>
+                  <span
+                    class="flex-shrink-0 text-xs font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-violet to-accent-cyan"
+                    >{{ skill.level }}%</span
+                  >
                 </div>
-                <span class="text-xs font-mono text-accent-cyan">{{ skill.level }}%</span>
+                <!-- Premium Progress bar -->
+                <div class="w-full h-1.5 rounded-full bg-black/40 overflow-hidden shadow-inner">
+                  <div
+                    class="h-full rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan skill-bar-fill shadow-[0_0_10px_rgba(139,92,246,0.8)]"
+                    [style.width.%]="skill.level"
+                  ></div>
+                </div>
               </div>
-              <!-- Progress bar -->
-              <div class="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
-                <div
-                  class="h-full rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan skill-bar-fill"
-                  [style.width.%]="skill.level"
-                ></div>
-              </div>
-            </div>
-          }
+            }
+          </div>
         </div>
-      </div>
-    }
+      }
+    </div>
   </div>
 </section>
